@@ -27,14 +27,14 @@ class Bacteria:
         """Age bacteria by one unit of time and increase length accordingly"""
         if not self.isDead:
             self.age += 1
-            self.len *= 1.2
+            self.len *= 1.2*random.uniform(.9,1.25)
 
     def getDivisionProbability(self):
         """Return probablity that this bacteria will divide"""
         if self.len < _MIN_DIV_LENGTH or self.isDead:
             return 0
             #TODO: use a better function
-        return min(1, 0.1*self.len)
+        return min(1, 0.05*self.len)
 
     def murder(self):
         """Kill this bacteria in cold blood"""
