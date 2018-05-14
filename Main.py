@@ -54,6 +54,9 @@ if __name__ == '__main__':
                 print("Length: {}".format(str(child.root.len)))
         tree.ageTree()
     tree.printTree()
+    _TIM = Bacteria(_LENGTH, _POS_X, _POS_Y, _AGE, "timothy")
+    _TIM_TREE = BinaryTree(_TIM) #Tree with a lonely Timothy as root
+    _TIM_TREE.printTree()
 
 
         

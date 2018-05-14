@@ -3,6 +3,7 @@
 # class Node():
 #     def __init__(self, value):
 #       self.value = value
+
 _SPACE_PER_LEVEL = 10
 _EMPTY_LINE = ""
 for i in range(0, _SPACE_PER_LEVEL):
@@ -66,33 +67,43 @@ class BinaryTree():
         #TODO: Write this function
         return 0
 
+    def printDict(self, d):
+        for k in d.keys():
+            print(str(k))
+
     def printTree(self, output_file = "output.txt"):
         """Print the tree into text file"""
         depth = self.getDepth()
         #Lines occupied by tree in file
-        num_lines = ((depth+1)**2) - 1
+        num_lines = (2**(depth+1)) - 1        
+        print("Number of lines is {}.".format(num_lines))
         line_data = dict()
-        self._get_line_data(depth, (num_lines/2)+1, line_data)
+        self._get_line_data(depth, (num_lines//2)+1, line_data)
+        self.printDict(line_data)
         with open(output_file, 'w') as f:
-            for line_no in range(0, num_lines+1):
+            for line_no in range(1, num_lines+1):
+                print("Working on line {}.".format(line_no))
                 #Build string for this line
                 line = ""
                 if line_no in line_data:
+                    print("Line {} has something".format(line_no))
                     line_dict = line_data[line_no]
+                    self.printDict(line_dict)
                     for ht in range (0, depth+1):
                         if ht in line_dict:
                             bact = line_dict[ht]
+                            print("found bacteria {}".format(bact.name))
                             line_length = _SPACE_PER_LEVEL - len(bact.name)
+                            horizontal_line = ""
                             if ht!= 0:
                             #Build a line of approrpiate length for the diagram
-                                horizontal_line = ""
                                 for j in range(0, line_length):
                                     horizontal_line+="-"
                                 horizontal_line+="|"
-                                line = bact.name + horizontal_line + line
+                            line = bact.name + horizontal_line + line
                         else:
                             line = _EMPTY_LINE + line    
-                    f.write(line)
+                f.write(line)
 
     def _get_line_data(self, current_ht, mid_pt, d):
         """
