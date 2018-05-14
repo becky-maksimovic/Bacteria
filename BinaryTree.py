@@ -60,7 +60,7 @@ class BinaryTree():
         """Return depth of tree: log(number of nodes) + 1"""
         pass
 
-    def printTree(self, output_file : "output.txt"):
+    def printTree(self, output_file = "output.txt"):
         """Print the tree into text file"""
         depth = getDepth()
         num_lines = (depth**2) - 1
@@ -85,17 +85,19 @@ class BinaryTree():
             --c 
         this is something like
         {
-          1: { 1:b }
-          2: { 0:a }
-          3: { 1:c }
+          1: { 0 : Bacteria b }
+          2: { 1 : Bacteria a }
+          3: { 0 : Bacteria c }
         }
         """
         #add self to midpoint
+        d.update({mid_pt : {current_ht : self.root}})
         #recurse
+        current_ht = current_ht-1
         if self.left:
-            self.left._get_line_data(current_ht-1, mid_pt - 2**current_ht)
+            self.left._get_line_data(current_ht, mid_pt - 2**current_ht)
         if self.right:
-            self.right._get_line_data(current_ht-1, midt_pt + 2**current_ht)
+            self.right._get_line_data(current_ht, midt_pt + 2**current_ht)
             
                 
     # def timeStep(self, cur_node): #step where the cell does not divide
