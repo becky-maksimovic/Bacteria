@@ -1,3 +1,5 @@
+import random
+
 _MIN_DIV_LENGTH = 8 #Minimum length for bacteria to divide
 
 class Bacteria:

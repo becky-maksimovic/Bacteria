@@ -56,7 +56,47 @@ class BinaryTree():
         if self.right:
             self.right.ageTree()
             
+    def getDepth(self):
+        """Return depth of tree: log(number of nodes) + 1"""
+        pass
 
+    def printTree(self, output_file : "output.txt"):
+        """Print the tree into text file"""
+        depth = getDepth()
+        num_lines = (depth**2) - 1
+        line_data = _get_line_data()
+        with open(output_file) as f:
+            for line in line_data.getKeys():
+                pass
+                #f.write(*line to write*)
+
+    def _get_line_data(self, current_ht, mid_pt, d):
+        """
+        NOTE: CURRENT_HEIGHT = MAX_DEPTH - CURRENT_DEPTH so leaf will have deoth 0.
+        Update dictionary d of form:
+        {
+        line no: {
+                  depth level : bacteria info
+                 }
+        }
+        For example fot the tree
+            __b
+        a -|
+            --c 
+        this is something like
+        {
+          1: { 1:b }
+          2: { 0:a }
+          3: { 1:c }
+        }
+        """
+        #add self to midpoint
+        #recurse
+        if self.left:
+            self.left._get_line_data(current_ht-1, mid_pt - 2**current_ht)
+        if self.right:
+            self.right._get_line_data(current_ht-1, midt_pt + 2**current_ht)
+            
                 
     # def timeStep(self, cur_node): #step where the cell does not divide
     # def divStep(self, cur_node): #step where the cell does divide
