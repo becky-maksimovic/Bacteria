@@ -53,6 +53,7 @@ if __name__ == '__main__':
                 print("Age: {}".format(str(child.root.age)))
                 print("Length: {}".format(str(child.root.len)))
         tree.ageTree()
+    tree.printTree()
 
 
         

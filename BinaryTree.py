@@ -3,6 +3,11 @@
 # class Node():
 #     def __init__(self, value):
 #       self.value = value
+_SPACE_PER_LEVEL = 10
+_EMPTY_LINE = ""
+for i in range(0, _SPACE_PER_LEVEL):
+    _EMPTY_LINE += ' '
+
 
 class BinaryTree():
     def __init__(self, root_value, left_value = None, right_value = None):
@@ -57,18 +62,37 @@ class BinaryTree():
             self.right.ageTree()
             
     def getDepth(self):
-        """Return depth of tree: log(number of nodes) + 1"""
-        pass
+        """Return depth of tree: log(number of nodes)"""
+        #TODO: Write this function
+        return 0
 
     def printTree(self, output_file = "output.txt"):
         """Print the tree into text file"""
-        depth = getDepth()
-        num_lines = (depth**2) - 1
-        line_data = _get_line_data()
-        with open(output_file) as f:
-            for line in line_data.getKeys():
-                pass
-                #f.write(*line to write*)
+        depth = self.getDepth()
+        #Lines occupied by tree in file
+        num_lines = ((depth+1)**2) - 1
+        line_data = dict()
+        self._get_line_data(depth, (num_lines/2)+1, line_data)
+        with open(output_file, 'w') as f:
+            for line_no in range(0, num_lines+1):
+                #Build string for this line
+                line = ""
+                if line_no in line_data:
+                    line_dict = line_data[line_no]
+                    for ht in range (0, depth+1):
+                        if ht in line_dict:
+                            bact = line_dict[ht]
+                            line_length = _SPACE_PER_LEVEL - len(bact.name)
+                            if ht!= 0:
+                            #Build a line of approrpiate length for the diagram
+                                horizontal_line = ""
+                                for j in range(0, line_length):
+                                    horizontal_line+="-"
+                                horizontal_line+="|"
+                                line = bact.name + horizontal_line + line
+                        else:
+                            line = _EMPTY_LINE + line    
+                    f.write(line)
 
     def _get_line_data(self, current_ht, mid_pt, d):
         """
